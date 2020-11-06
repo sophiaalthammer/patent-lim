@@ -1,0 +1,70 @@
+WITH publications AS (
+  SELECT
+    publication_number,
+    filing_date,
+    title_localized,
+    abstract_localized,
+    ipc,
+    citation
+  FROM
+    `patents-public-data.patents.publications`)
+
+SELECT
+  pub.publication_number AS pub_number,
+  cit.publication_number as cit_number
+FROM
+  publications AS pub,
+  UNNEST(pub.citation) AS cit
+INNER JOIN
+  publications as pub_cit
+ON
+  cit.publication_number = pub_cit.publication_number
+WHERE
+  cit.type = "X"
+AND
+  pub.filing_date IS NOT NULL
+AND
+  pub_cit.filing_date IS NOT NULL
+AND
+  (SELECT "en" IN (SELECT language FROM UNNEST(pub.title_localized)))
+AND
+  (SELECT "en" IN (SELECT language FROM UNNEST(pub.abstract_localized)))
+AND
+  (SELECT "en" IN (SELECT language FROM UNNEST(pub_cit.title_localized)))
+AND
+  (SELECT "en" IN (SELECT language FROM UNNEST(pub_cit.abstract_localized)))
+AND
+  EXISTS (SELECT 1 FROM UNNEST(pub.ipc) WHERE code IS NOT NULL)
+AND
+  EXISTS (SELECT 1 FROM UNNEST(pub_cit.ipc) WHERE code IS NOT NULL)
+ORDER BY
+  pub.filing_date DESC,
+  pub_cit.filing_date DESC
+
+WITH pub_numbers AS (
+  SELECT pub_number FROM `kappa_citation_data.citations`
+  UNION DISTINCT
+  SELECT cit_number AS pub_number FROM `kappa_citation_data.citations`)
+
+SELECT
+    publication_number as pub_number,
+    publication_date as pub_date,
+    filing_date,
+    priority_date,
+    title.text AS title,
+    abstract.text AS abstract,
+    ARRAY_TO_STRING(ARRAY(SELECT code FROM UNNEST(p.ipc)), ";") AS ipc
+  FROM
+    `patents-public-data.patents.publications` p,
+    UNNEST(p.title_localized) as title,
+    UNNEST(p.abstract_localized) as abstract
+  WHERE
+    EXISTS (SELECT 1 FROM pub_numbers
+    WHERE pub_numbers.pub_number = p.publication_number)
+  AND
+    title.language = "en"
+  AND
+    abstract.language = "en"
+\end{lstlisting}
+
+# Google BigQuery database accessed on the 04.11.2019.

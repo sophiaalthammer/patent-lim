@@ -1,0 +1,39 @@
+SELECT
+publication_number,
+publication_date,
+filing_date,
+priority_date,
+title.text AS title,
+title.truncated as title_truncated,
+abstract.text AS abstract,
+abstract.truncated as abstract_truncated,
+claim.text as claim,
+claim.truncated as claim_truncated,
+description.text as description,
+description.truncated as description_truncated,
+/* IPC and CPC tags als list containing all tags separated with a ';' */
+ARRAY_TO_STRING(ARRAY(SELECT code FROM UNNEST(p.ipc)), ";") AS ipc,
+ARRAY_TO_STRING(ARRAY(SELECT code FROM UNNEST(p.cpc)), ";") AS cpc
+FROM
+`patents-public-data.patents.publications` p,
+UNNEST(p.title_localized) as title,
+UNNEST(p.abstract_localized) as abstract,
+UNNEST(p.claims_localized) as claim,
+UNNEST(p.description_localized) as description
+/* All patents after the 01.01.2000 */
+WHERE
+filing_date >= 20000101
+/* Language of all text in the patents is English */
+AND
+claim.language = 'en'
+AND
+description.language = 'en'
+AND
+title.language = 'en'
+AND
+abstract.language = 'en'
+AND
+/* Granted patents only */
+application_kind = 'A'
+
+#Google BigQuery database accessed on the 04.11.2019.
