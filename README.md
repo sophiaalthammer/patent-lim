@@ -1,7 +1,7 @@
 **This code belongs to the paper "Linguistically informed masking for representation learning in the patent domain".**
 
 It contains different folders for the different coding parts like the linguistical analysis and the domain and downstream fine-tuning of the paper.
-We plan to make the patent domain fine-tuned checkpoints of the BERT and SciBERT model with the MLM and the LIM method available.
+The patent domain fine-tuned checkpoints of the BERT and SciBERT model with the MLM and the LIM method are available [here](https://zenodo.org/record/4271847#.YFyWZtwxk2w).
 The Semantic Scholar data we used and the Wikitext-raw-2 data can be found in the datafolder. There is also a sample of the patent data we used, the whole USPTO13M dataset can be
 extracted from Google BigQuery using [this query](USPTO13M_query.txt).
 
