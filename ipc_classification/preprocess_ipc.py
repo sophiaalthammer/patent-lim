@@ -1,3 +1,10 @@
+# 
+# patent_lim: Linguistically informed masking for representation learning in the patent domain
+#
+# Copyright (c) Siemens AG, 2020
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 import pandas as pd
 import numpy as np
 import os

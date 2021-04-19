@@ -1,5 +1,8 @@
 # coding=utf-8
 # Copyright 2018 The Google AI Language Team Authors.
+# 
+# Adaptations for "patent_lim: Linguistically informed masking for representation 
+# learning in the patent domain" are copyright (c) Siemens AG, 2020.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

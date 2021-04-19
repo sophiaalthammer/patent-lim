@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# patent_lim: Linguistically informed masking for representation learning in the patent domain
+#
+# Copyright (c) Siemens AG, 2020
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 source ./bert_env8/bin/activate
 export BERT_BASE_DIR=/home/ubuntu/PycharmProjects/patent/bert
 for i in 673 674

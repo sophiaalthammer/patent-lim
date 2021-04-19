@@ -288,3 +288,24 @@ Run in ipc_citation_dependency with Python3 environment:
 
 - Preprocess data for training the linear classifier in preprocess_train_test.py
 - Train a linear classifier using SciKitlearn in train_classifier.py
+
+
+## License and copyright
+
+Copyright (c) Siemens AG, 2020
+
+All contributions by Siemens AG in this repository are licensed under [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+### Third-party software
+
+We include the following third-party software in this repository:
+
+#### Bert
+
+Copyright 2018 The Google AI Language Team Authors.
+
+License: Apache-2.0
+
+#### CNN text classification tf
+
+License: Apache-2.0
