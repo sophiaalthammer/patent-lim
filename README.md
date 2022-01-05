@@ -1,4 +1,4 @@
-**This code belongs to the paper "Linguistically informed masking for representation learning in the patent domain".**
+**This code belongs to the paper "[Linguistically informed masking for representation learning in the patent domain](https://arxiv.org/abs/2106.05768)".**
 
 It contains different folders for the different coding parts like the linguistical analysis and the domain and downstream fine-tuning of the paper.
 The patent domain fine-tuned checkpoints of the BERT and SciBERT model with the MLM and the LIM method are available [here](https://zenodo.org/record/4271847#.YFyWZtwxk2w).
