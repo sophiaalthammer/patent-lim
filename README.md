@@ -5,6 +5,16 @@ The patent domain fine-tuned checkpoints of the BERT and SciBERT model with the 
 The Semantic Scholar data we used and the Wikitext-raw-2 data can be found in the datafolder. There is also a sample of the patent data we used, the whole USPTO13M dataset can be
 extracted from Google BigQuery using [this query](USPTO13M_query.txt).
 
+Please cite our work as follows
+```
+@inproceedings{althammer2021patentlim,
+      title={Linguistically Informed Masking for Representation Learning in the Patent Domain}, 
+      author={Sophia Althammer and Mark Buckley and Sebastian Hofstätter and Allan Hanbury},
+      year={2021},
+      booktitle={Proceedings of the 2nd Workshop on Patent Text Mining and Semantic Technologies (PatentSemTech) 2021 co-located with the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR 2021)},
+}
+```
+
 ## Structure
 
 - [bert](bert): [Cloned Google Research BERT Github repository](https://github.com/google-research/bert) with additional script for linguistically informed masking ([create_pretraining_data_lim.py](bert/create_pretraining_data_lim.py))
